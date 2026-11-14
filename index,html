@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whitetail Vision</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101811;color:#fff;font-family:Arial,sans-serif}
+header{padding:25px 20px;background:#18291c;border-bottom:1px solid #314532}
+.logo{color:#ff2020;font-size:25px;font-weight:bold}
+.subtitle,.muted{color:#a5b6a3}
+.subtitle{margin-top:6px}
+main{padding:20px;max-width:650px;margin:auto}
+h2{margin-top:25px}
+.card{background:#1b2a1e;border:1px solid #344735;border-radius:15px;padding:18px;margin:15px 0}
+button{background:#ff2020;color:#fff;border:none;border-radius:9px;padding:12px 16px;font-weight:bold;cursor:pointer}
+.secondary{background:#304532;color:white}
+nav{display:flex;justify-content:space-around;background:#18291c;padding:12px 3px;position:sticky;bottom:0}
+nav button{background:transparent;color:#b8c7b5;padding:10px 7px}
+nav button.active{color:#ff2020}
+input{padding:12px;border-radius:8px;border:1px solid #536653;background:#101811;color:white;width:100%;margin:10px 0}
+.hidden{display:none}.big{font-size:30px}
+</style>
+</head>
+<body>
+<header><div class="logo">🦌 WHITETAIL VISION</div><div class="subtitle">Your hunting. Your cameras. Your deer.</div></header>
+<main>
+<section id="home">
+<h2>Welcome back!</h2><p class="muted">Your hunting season starts here.</p>
+<div class="card"><div class="muted">CONNECTED CAMERAS</div><div class="big">1</div><p>Food Plot Camera</p><button onclick="showPage('cameras')">View Cameras</button></div>
+<div class="card"><div class="muted">BUCK LIBRARY</div><div class="big">🦌</div><p>Keep track of bucks on your property.</p><button onclick="showPage('bucks')">Open Buck Library</button></div>
+<div class="card"><h3>Latest Activity</h3><p>📸 Food Plot Camera</p><p class="muted">Demo camera • Sample activity</p></div>
+</section>
+<section id="cameras" class="hidden"><h2>My Cameras</h2>
+<div class="card"><h3>📷 Food Plot Camera</h3><p class="muted">Demo camera • Not connected to hardware</p><p>Battery: 85% (sample)</p><button onclick="showPage('gallery')">View Gallery</button></div>
+<div class="card"><h3>Add a Camera</h3><p class="muted">Camera pairing will be added later.</p><button onclick="alert('QR camera pairing is coming later!')">＋ Add Camera</button></div></section>
+<section id="gallery" class="hidden"><h2>Photo Gallery</h2><div class="card"><h3>📸 Camera Photos</h3><p class="muted">Real trail camera photos will appear here after camera connections are built.</p><button onclick="showPage('cameras')">Back to Cameras</button></div></section>
+<section id="bucks" class="hidden"><h2>🦌 Buck Library</h2><p class="muted">Keep track of bucks you spot.</p>
+<div class="card"><h3>Big 10</h3><p>Example buck profile</p><p class="muted">Sighting history coming later.</p></div>
+<div class="card"><h3>Add a Buck</h3><input id="buckName" placeholder="Enter buck name"><button onclick="addBuck()">Save Buck</button></div><div id="buckList"></div></section>
+<section id="plans" class="hidden"><h2>Plans & Membership</h2><div class="card"><h3>Whitetail Vision Free</h3><p>Explore the app and organize your bucks.</p><p class="muted">Sample plan — no payment system yet.</p></div><div class="card"><h3>Premium</h3><p>More storage and advanced hunting features.</p><p class="muted">Coming later.</p></div></section>
+</main>
+<nav><button class="active" onclick="showPage('home',this)">Home</button><button onclick="showPage('cameras',this)">Cameras</button><button onclick="showPage('gallery',this)">Gallery</button><button onclick="showPage('bucks',this)">Bucks</button><button onclick="showPage('plans',this)">Plans</button></nav>
+<script>
+function showPage(page,button){document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));document.getElementById(page).classList.remove('hidden');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));if(button)button.classList.add('active')}
+function addBuck(){const input=document.getElementById('buckName');const name=input.value.trim();if(!name){alert('Enter a buck name first!');return}const card=document.createElement('div');card.className='card';const title=document.createElement('h3');title.textContent='🦌 '+name;const note=document.createElement('p');note.textContent='Buck profile created!';card.append(title,note);document.getElementById('buckList').appendChild(card);input.value=''}
+</script>
+</body></html>
